@@ -5,6 +5,8 @@ public class PerformanceTracker {
     private long swaps;
     private long arrayAccesses;
     private long memoryAllocations;
+    private long startTime;
+    private long endTime;
 
     public void incrementComparisons() {
         comparisons++;
@@ -24,6 +26,18 @@ public class PerformanceTracker {
 
     public void incrementMemoryAllocations() {
         memoryAllocations++;
+    }
+
+    public void start() {
+        startTime = System.nanoTime();
+    }
+
+    public void stop() {
+        endTime = System.nanoTime();
+    }
+
+    public double getExecutionTimeMillis() {
+        return (endTime - startTime) / 1_000_000.0;
     }
 
     public long getComparisons() {
@@ -47,5 +61,7 @@ public class PerformanceTracker {
         swaps = 0;
         arrayAccesses = 0;
         memoryAllocations = 0;
+        startTime = 0;
+        endTime = 0;
     }
 }
